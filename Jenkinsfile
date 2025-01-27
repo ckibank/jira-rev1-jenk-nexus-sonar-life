@@ -35,7 +35,7 @@ pipeline {
                         nexusVersion: 'nexus3',
                         protocol: 'https',
                         repository: 'echrev1-dev',
-                        version: '1.0-SNAPSHOT',
+                        version: '2.0-SNAPSHOT',
                         artifacts: [
                             [
                                 artifactId: 'simple-rest-api', 
