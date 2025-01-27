@@ -31,7 +31,7 @@ pipeline {
                         groupId: 'org.springframework.boot',
                         nexusUrl: 'urban-fiesta-v557p495wq7hxwjv-8081.app.github.dev/repository/echrev1-dev/',
                         nexusVersion: 'nexus2',
-                        protocol: 'http',
+                        protocol: 'https',
                         repository: 'echrev1-dev',
                         version: '0.0.1-SNAPSHOT',
                         artifacts: [
