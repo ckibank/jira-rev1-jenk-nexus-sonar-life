@@ -33,7 +33,15 @@ pipeline {
                         nexusVersion: 'nexus2',
                         protocol: 'http',
                         repository: 'echrev1-dev',
-                        version: '0.0.1-SNAPSHOT'
+                        version: '0.0.1-SNAPSHOT',
+                        artifacts: [
+                            [
+                                artifactId: 'spring-boot-maven-plugin', 
+                                classifier: '', 
+                                file: 'target/demo-0.0.1-SNAPSHOT.jar', 
+                                type: 'jar'
+                            ]
+                        ]
                         )
                 }
             }
