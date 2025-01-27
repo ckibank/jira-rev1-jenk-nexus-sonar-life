@@ -38,7 +38,7 @@ pipeline {
                             [
                                 artifactId: 'spring-boot-maven-plugin', 
                                 classifier: '', 
-                                file: 'target/demo-0.0.1-SNAPSHOT.jar', 
+                                file: 'demo/target/demo-0.0.1-SNAPSHOT.jar', 
                                 type: 'jar'
                             ]
                         ]

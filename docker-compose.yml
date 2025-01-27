@@ -35,7 +35,7 @@ services:
       - nexus_data:/nexus-data
     networks:
       - ci_network
-    command: ["-n", "65536"] 
+    # command: ["-n", "65536"] 
 
 networks:
   ci_network:
