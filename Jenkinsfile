@@ -13,7 +13,7 @@ pipeline {
 
         stage('Build code') {
             steps {
-                dir('hw') {
+                dir('simple-rest-api') {
                     echo 'Cleaning dependencies'
                     sh 'mvn clean package'
                 }
@@ -24,7 +24,7 @@ pipeline {
 
         stage('Send to Nexus snapshot rep') {
             steps {
-                dir('hw') {
+                dir('simple-rest-api') {
                     echo 'Nexus upload'
                     nexusArtifactUploader(
                         credentialsId: 'nexus-jenkins',
