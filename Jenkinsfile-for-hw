@@ -15,7 +15,7 @@ pipeline {
             steps {
                 dir('hw') {
                     echo 'Cleaning dependencies'
-                    sh 'mvn clean package'
+                    sh 'mvn clean install'
                 }
             }
         }
@@ -29,7 +29,7 @@ pipeline {
                     nexusArtifactUploader(
                         credentialsId: 'nexus-jenkins',
                         // credentialsId: 'jenkins-admin',
-                        groupId: 'com.simplerest',
+                        groupId: 'com.example',
                         nexusUrl: 'urban-fiesta-v557p495wq7hxwjv-8081.app.github.dev',
                         // nexusUrl: 'urban-fiesta-v557p495wq7hxwjv-8081.app.github.dev/repository/echrev1-dev/',
                         nexusVersion: 'nexus3',
@@ -38,9 +38,9 @@ pipeline {
                         version: '1.0-SNAPSHOT',
                         artifacts: [
                             [
-                                artifactId: 'simple-rest-api', 
+                                artifactId: 'hello-world-cli', 
                                 classifier: '', 
-                                file: 'target/simple-rest-api-1.0-SNAPSHOT.jar', 
+                                file: 'target/hello-world-cli-1.0-SNAPSHOT.jar', 
                                 type: 'jar'
                             ]
                         ]
