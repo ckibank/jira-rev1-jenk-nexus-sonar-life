@@ -13,9 +13,9 @@ pipeline {
 
         stage('Build code') {
             steps {
-                dir('demo') {
+                dir('simple-rest-api') {
                     echo 'Cleaning dependencies'
-                    sh 'mvn clean install'
+                    sh 'mvn clean package'
                 }
             }
         }
@@ -24,22 +24,23 @@ pipeline {
 
         stage('Send to Nexus snapshot rep') {
             steps {
-                dir('demo') {
+                dir('simple-rest-api') {
                     echo 'Nexus upload'
                     nexusArtifactUploader(
                         credentialsId: 'nexus-jenkins',
                         // credentialsId: 'jenkins-admin',
-                        groupId: 'com.echdevop',
+                        groupId: 'com.simplerest',
                         nexusUrl: 'urban-fiesta-v557p495wq7hxwjv-8081.app.github.dev',
+                        // nexusUrl: 'urban-fiesta-v557p495wq7hxwjv-8081.app.github.dev/repository/echrev1-dev/',
                         nexusVersion: 'nexus3',
                         protocol: 'https',
                         repository: 'echrev1-dev',
-                        version: '0.0.1-SNAPSHOT',
+                        version: '1.0-SNAPSHOT',
                         artifacts: [
                             [
-                                artifactId: 'demo', 
+                                artifactId: 'simple-rest-api', 
                                 classifier: '', 
-                                file: 'target/demo-0.0.1-SNAPSHOT.jar', 
+                                file: 'target/simple-rest-api-1.0-SNAPSHOT.jar', 
                                 type: 'jar'
                             ]
                         ]
