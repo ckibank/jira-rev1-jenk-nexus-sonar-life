@@ -29,7 +29,7 @@ pipeline {
                     nexusArtifactUploader(
                         credentialsId: 'nexus-jenkins',
                         groupId: 'org.springframework.boot',
-                        nexusUrl: 'https://urban-fiesta-v557p495wq7hxwjv-8081.app.github.dev/repository/echrev1-dev/',
+                        nexusUrl: 'urban-fiesta-v557p495wq7hxwjv-8081.app.github.dev/repository/echrev1-dev/',
                         nexusVersion: 'nexus2',
                         protocol: 'http',
                         repository: 'echrev1-dev',
