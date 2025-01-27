@@ -12,8 +12,10 @@ pipeline {
         }
         stage('Build code'){
             steps {
-                echo "Cleaning dependencies"
-                sh "mvn clean install"
+                dir('demo'){
+                    echo "Cleaning dependencies"
+                    sh "mvn clean install"
+                }
             }
         }
     }
