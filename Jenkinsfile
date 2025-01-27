@@ -3,6 +3,12 @@ pipeline {
     tools {
         maven 'M3'
     }
+    environment {
+        artifactId = readMavenPom().getArtifactId()
+        version = readMavenPom().getVersion()
+        name = readMavenPom().getName()
+        groupId = readMavenPom().getGroupId()
+    }
     stages {
         stage('Fetch Code') {
             steps {
@@ -23,12 +29,12 @@ pipeline {
             steps {
                 script {
                     // Read the POM file
-                    def pom = readMavenPom(file: 'simple-rest-api/pom.xml')
+                    // def pom = readMavenPom(file: 'simple-rest-api/pom.xml')
                     
                     // Extract values
-                    def version = pom.getVersion()
-                    def groupId = pom.getGroupId()
-                    def artifactId = pom.getArtifactId()
+                    // def version = pom.getVersion()
+                    // def groupId = pom.getGroupId()
+                    // def artifactId = pom.getArtifactId()
                     
                     // Print extracted values for verification
                     echo "Version: ${version}"
