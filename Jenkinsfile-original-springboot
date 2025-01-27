@@ -13,7 +13,7 @@ pipeline {
 
         stage('Build code') {
             steps {
-                dir('hw') {
+                dir('demo') {
                     echo 'Cleaning dependencies'
                     sh 'mvn clean install'
                 }
@@ -24,22 +24,22 @@ pipeline {
 
         stage('Send to Nexus snapshot rep') {
             steps {
-                dir('hw') {
+                dir('demo') {
                     echo 'Nexus upload'
                     nexusArtifactUploader(
                         // credentialsId: 'nexus-jenkins',
                         credentialsId: 'jenkins-admin',
-                        groupId: 'com.example',
+                        groupId: 'org.springframework.boot',
                         nexusUrl: 'urban-fiesta-v557p495wq7hxwjv-8081.app.github.dev/repository/echrev1-dev/',
                         nexusVersion: 'nexus2',
                         protocol: 'https',
                         repository: 'echrev1-dev',
-                        version: '1.0-SNAPSHOT',
+                        version: '0.0.1-SNAPSHOT',
                         artifacts: [
                             [
-                                artifactId: 'hello-world-cli', 
+                                artifactId: 'spring-boot-maven-plugin', 
                                 classifier: '', 
-                                file: 'target/hello-world-cli-1.0-SNAPSHOT.jar', 
+                                file: 'target/demo-0.0.1-SNAPSHOT.jar', 
                                 type: 'jar'
                             ]
                         ]
