@@ -1,7 +1,6 @@
 pipeline {
     agent any
     tools {
-        // need to be enable in Jenkins > Tools : Add Maven 'M3'
         maven 'M3'
     }
     stages {
@@ -20,7 +19,24 @@ pipeline {
             }
         }
 
-// nexusArtifactUploader credentialsId: 'nexus-jenkins', groupId: 'org.springframework.boot', nexusUrl: 'urban-fiesta-v557p495wq7hxwjv-8081.app.github.dev/repository/echrev1-dev/', nexusVersion: 'nexus2', protocol: 'http', repository: 'echrev1-dev', version: '0.0.1-SNAPSHOT'
+        stage('Read POM Values') {
+            steps {
+                script {
+                    // Read the POM file
+                    def pom = readMavenPom(file: 'simple-rest-api/pom.xml')
+                    
+                    // Extract values
+                    def version = pom.version
+                    def groupId = pom.groupId
+                    def artifactId = pom.artifactId
+                    
+                    // Print extracted values for verification
+                    echo "Version: ${version}"
+                    echo "Group ID: ${groupId}"
+                    echo "Artifact ID: ${artifactId}"
+                }
+            }
+        }
 
         stage('Send to Nexus snapshot rep') {
             steps {
@@ -28,23 +44,21 @@ pipeline {
                     echo 'Nexus upload'
                     nexusArtifactUploader(
                         credentialsId: 'nexus-jenkins',
-                        // credentialsId: 'jenkins-admin',
-                        groupId: 'com.simplerest',
+                        groupId: groupId,
                         nexusUrl: 'urban-fiesta-v557p495wq7hxwjv-8081.app.github.dev',
-                        // nexusUrl: 'urban-fiesta-v557p495wq7hxwjv-8081.app.github.dev/repository/echrev1-dev/',
                         nexusVersion: 'nexus3',
                         protocol: 'https',
                         repository: 'echrev1-dev',
-                        version: '2.0-SNAPSHOT',
+                        version: version,
                         artifacts: [
                             [
-                                artifactId: 'simple-rest-api', 
+                                artifactId: artifactId, 
                                 classifier: '', 
-                                file: 'target/simple-rest-api-2.0-SNAPSHOT.jar', 
+                                file: "target/${artifactId}-${version}.jar", 
                                 type: 'jar'
                             ]
                         ]
-                        )
+                    )
                 }
             }
         }
