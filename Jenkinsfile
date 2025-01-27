@@ -4,10 +4,11 @@ pipeline {
         maven 'M3'
     }
     environment {
-        artifactId = readMavenPom().getArtifactId()
-        version = readMavenPom().getVersion()
-        name = readMavenPom().getName()
-        groupId = readMavenPom().getGroupId()
+        pom = readMavenPom(file: 'simple-rest-api/pom.xml')
+        artifactId = pom.getArtifactId()
+        version = pom.getVersion()
+        name = pom.getName()
+        groupId = pom.getGroupId()
     }
     stages {
         stage('Fetch Code') {
