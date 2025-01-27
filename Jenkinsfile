@@ -40,7 +40,7 @@ pipeline {
                             [
                                 artifactId: 'simple-rest-api', 
                                 classifier: '', 
-                                file: 'target/simple-rest-api-1.0-SNAPSHOT.jar', 
+                                file: 'target/simple-rest-api-2.0-SNAPSHOT.jar', 
                                 type: 'jar'
                             ]
                         ]
