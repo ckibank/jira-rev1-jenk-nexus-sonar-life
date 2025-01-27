@@ -27,8 +27,8 @@ pipeline {
                 dir('hw') {
                     echo 'Nexus upload'
                     nexusArtifactUploader(
-                        // credentialsId: 'nexus-jenkins',
-                        credentialsId: 'jenkins-admin',
+                        credentialsId: 'nexus-jenkins',
+                        // credentialsId: 'jenkins-admin',
                         groupId: 'com.example',
                         nexusUrl: 'urban-fiesta-v557p495wq7hxwjv-8081.app.github.dev/repository/echrev1-dev/',
                         nexusVersion: 'nexus2',
