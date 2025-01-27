@@ -27,7 +27,8 @@ pipeline {
                 dir('demo') {
                     echo 'Nexus upload'
                     nexusArtifactUploader(
-                        credentialsId: 'nexus-jenkins',
+                        // credentialsId: 'nexus-jenkins',
+                        credentialsId: 'jenkins-admin',
                         groupId: 'org.springframework.boot',
                         nexusUrl: 'urban-fiesta-v557p495wq7hxwjv-8081.app.github.dev/repository/echrev1-dev/',
                         nexusVersion: 'nexus2',

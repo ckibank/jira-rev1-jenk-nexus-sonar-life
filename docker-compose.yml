@@ -29,6 +29,9 @@ services:
 
   nexus:
     image: sonatype/nexus3
+    environment:
+        # - JAVA_OPTS="-Dorg.eclipse.jetty.server.Request.maxFormContentSize=50MB"
+        - JAVA_OPTS="-Dorg.eclipse.jetty.server.Request.maxFormContentSize=52428800"  # Set to 50MB
     ports:
       - "8081:8081"
     volumes:
