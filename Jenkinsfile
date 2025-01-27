@@ -10,5 +10,11 @@ pipeline {
                 echo "git code fetched."
             }
         }
+        stage('Build code'){
+            steps {
+                echo "Cleaning dependencies"
+                sh "mvn clean install"
+            }
+        }
     }
 }
